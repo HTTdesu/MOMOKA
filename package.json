@@ -1,0 +1,16 @@
+{
+    "name": "com.httdesu.momoka",
+    "displayName": "MOMOKA - Modular Material Orchestrator with Kode Assembler",
+    "description": "A shader generation framework uses to combine and generate shader codes.",
+    "version": "0.0.1",
+    "unity": "2022.3",
+    "author": "HTTdesu",
+    "dependencies": {
+        "com.unity.shadergraph": "14.0.10"
+    },
+    "keywords": [
+        "momoka",
+        "modular",
+        "shader"
+    ]
+}
