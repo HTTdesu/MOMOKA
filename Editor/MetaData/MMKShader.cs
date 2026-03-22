@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 namespace MOMOKA.MetaData
 {
-    [CreateAssetMenuAttribute(fileName = "New Shader", menuName = MMKCommon.CreateMMKShaderMenuItem, order = 1)]
+    [CreateAssetMenu(fileName = "New Shader", menuName = MMKCommon.CreateMMKShaderMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 1)]
     public class MMKShader : ScriptableObject
     {
         public string ShaderName;

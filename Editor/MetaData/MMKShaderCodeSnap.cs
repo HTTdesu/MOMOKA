@@ -14,7 +14,7 @@ namespace MOMOKA.MetaData
         public abstract string GenerateCode();
     }
 
-    [CreateAssetMenuAttribute(fileName = "New File Shader Code", menuName = MMKCommon.CreateMMKFileShaderCodeSnapMenuItem, order = 200)]
+    [CreateAssetMenu(fileName = "New File Shader Code", menuName = MMKCommon.CreateMMKFileShaderCodeSnapMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 200)]
     public class MMKFileShaderCodeSnap : MMKShaderCodeSnap
     {
         public TextAsset CodeFile;
@@ -24,7 +24,7 @@ namespace MOMOKA.MetaData
         }
     }
 
-    [CreateAssetMenuAttribute(fileName = "New String Shader Code", menuName = MMKCommon.CreateMMKStringShaderCodeSnapMenuItem, order = 200)]
+    [CreateAssetMenu(fileName = "New String Shader Code", menuName = MMKCommon.CreateMMKStringShaderCodeSnapMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 200)]
     public class MMKStringShaderCodeSnap : MMKShaderCodeSnap
     {
         [TextArea(5, 10)]

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MOMOKA.MetaData
 {
-    [CreateAssetMenuAttribute(fileName = "New Shader Feature", menuName = MMKCommon.CreateMMKShaderFeatureMenuItem, order = 3)]
+    [CreateAssetMenu(fileName = "New Shader Feature", menuName = MMKCommon.CreateMMKShaderFeatureMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 3)]
     public class MMKShaderFeature : ScriptableObject
     {
         public MMKShaderProgram VertexStage;

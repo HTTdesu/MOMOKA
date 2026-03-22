@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace MOMOKA.MetaData
 {
-    [CreateAssetMenuAttribute(fileName = "New Pass", menuName = MMKCommon.CreateMMKShaderPassMenuItem, order = 2)]
+    [CreateAssetMenuAttribute(fileName = "New Pass", menuName = MMKCommon.CreateMMKShaderPassMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 2)]
     public class MMKShaderPass : ScriptableObject
     {
         public string PassName;

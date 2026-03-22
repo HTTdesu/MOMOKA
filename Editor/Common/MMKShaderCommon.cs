@@ -13,6 +13,12 @@ namespace MOMOKA.Shader
         AfterPass,
     }
 
+    public enum ShaderPropertyDeclarationType
+    {
+        Global,
+        PerMaterial
+    }
+
     public class MMKShaderCommon
     {
         public enum Precision

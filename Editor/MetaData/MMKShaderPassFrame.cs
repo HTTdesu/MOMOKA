@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace MOMOKA.MetaData
 {
-    [Serializable]
     public abstract class MMKShaderPassFrame : ScriptableObject
     {
         

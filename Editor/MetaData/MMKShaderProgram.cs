@@ -11,37 +11,37 @@ namespace MOMOKA.MetaData
         public MMKShaderCodeSnap[] ShaderCode;
     }
 
-    [CreateAssetMenuAttribute(fileName = "New Vertex Program", menuName = MMKCommon.CreateMMKVertexProgramMenuItem, order = 100)]
+    [CreateAssetMenu(fileName = "New Vertex Program", menuName = MMKCommon.CreateMMKVertexProgramMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 100)]
     public class MMKVertexProgram : MMKShaderProgram
     {
 
     }
 
-    [CreateAssetMenuAttribute(fileName = "New Hull Program", menuName = MMKCommon.CreateMMKHullProgramMenuItem, order = 101)]
+    [CreateAssetMenu(fileName = "New Hull Program", menuName = MMKCommon.CreateMMKHullProgramMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 101)]
     public class MMKHullProgram : MMKShaderProgram
     {
 
     }
 
-    [CreateAssetMenuAttribute(fileName = "New Domain Program", menuName = MMKCommon.CreateMMKDomainProgramMenuItem, order = 102)]
+    [CreateAssetMenu(fileName = "New Domain Program", menuName = MMKCommon.CreateMMKDomainProgramMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 102)]
     public class MMKDomainProgram : MMKShaderProgram
     {
 
     }
 
-    [CreateAssetMenuAttribute(fileName = "New Geometry Program", menuName = MMKCommon.CreateMMKGeometryProgramMenuItem, order = 103)]
+    [CreateAssetMenu(fileName = "New Geometry Program", menuName = MMKCommon.CreateMMKGeometryProgramMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 103)]
     public class MMKGeometryProgram : MMKShaderProgram
     {
 
     }
 
-    [CreateAssetMenuAttribute(fileName = "New Material Program", menuName = MMKCommon.CreateMMKMaterialProgramMenuItem, order = 104)]
+    [CreateAssetMenu(fileName = "New Material Program", menuName = MMKCommon.CreateMMKMaterialProgramMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 104)]
     public class MMKMaterialProgram : MMKShaderProgram
     {
 
     }
 
-    [CreateAssetMenuAttribute(fileName = "New Lighting Program", menuName = MMKCommon.CreateMMKLightingProgramMenuItem, order = 105)]
+    [CreateAssetMenu(fileName = "New Lighting Program", menuName = MMKCommon.CreateMMKLightingProgramMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 105)]
     public class MMKLightingProgram : MMKShaderProgram
     {
 

@@ -1,16 +1,16 @@
-using MOMOKA.Shader;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using MOMOKA.Shader;
 
 namespace MOMOKA.MetaData
 {
     [Serializable]
     public abstract class MMKShaderProperty
     {
+        public ShaderPropertyDeclarationType ShaderDeclaration = ShaderPropertyDeclarationType.PerMaterial;
+
         public string[] Header;
         public string PropertyName;
         public string PropertyDescription;
@@ -25,12 +25,12 @@ namespace MOMOKA.MetaData
             StringBuilder sb = new StringBuilder();
             foreach (string header in Header)
             {
-                if(!header.StartsWith("["))
+                if (!header.StartsWith("["))
                 {
                     sb.Append("[");
                 }
                 sb.Append(header);
-                if(!header.EndsWith("]"))
+                if (!header.EndsWith("]"))
                 {
                     sb.Append("]");
                 }

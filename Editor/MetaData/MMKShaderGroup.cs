@@ -7,8 +7,8 @@ using UnityEditor;
 
 namespace MOMOKA.MetaData
 {
-    [CreateAssetMenuAttribute(fileName = "New Shader Product", menuName = MMKCommon.CreateMMKShaderGroupMenuItem, order = 0)]
-    public class MOMOKAShaderGroup : ScriptableObject
+    [CreateAssetMenu(fileName = "New Shader Product", menuName = MMKCommon.CreateMMKShaderGroupMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 0)]
+    public class MMKShaderGroup : ScriptableObject
     {
         public string ShaderProduceName;
         public MMKShader[] Shaders;

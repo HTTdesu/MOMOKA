@@ -7,20 +7,27 @@ namespace MOMOKA
     public static class MMKCommon
     {
         public const string AssetsMenuRoot = "MOMOKA/";
+        public const int AssetsMenuRootBaseOrder = -100;
 
-        public const string CreateMMKShaderGroupMenuItem = AssetsMenuRoot + "Create Shader Group";
-        public const string CreateMMKShaderMenuItem = AssetsMenuRoot + "Create Shader";
-        public const string CreateMMKShaderPassMenuItem = AssetsMenuRoot + "Create Shader Pass";
-        public const string CreateMMKShaderFeatureMenuItem = AssetsMenuRoot + "Create Shader Feature";
+        public const string CreateMMKShaderGroupOrchestratorMenuItem = AssetsMenuRoot + "Generate Shader Group";
+        public const string CreateMMKShaderOrchestratorMenuItem = AssetsMenuRoot + "Generate Shader";
 
-        public const string CreateMMKVertexProgramMenuItem = AssetsMenuRoot + "Create Vertex Program";
-        public const string CreateMMKHullProgramMenuItem = AssetsMenuRoot + "Create Hull Program";
-        public const string CreateMMKDomainProgramMenuItem = AssetsMenuRoot + "Create Domain Program";
-        public const string CreateMMKGeometryProgramMenuItem = AssetsMenuRoot + "Create Geometry Program";
-        public const string CreateMMKMaterialProgramMenuItem = AssetsMenuRoot + "Create Material Program";
-        public const string CreateMMKLightingProgramMenuItem = AssetsMenuRoot + "Create Lighting Program";
+        public const string AssetsMenuRootDev = AssetsMenuRoot + "Developer/";
+        public const int AssetsMenuRootDevBaseOrder = -100;
 
-        public const string CreateMMKFileShaderCodeSnapMenuItem = AssetsMenuRoot + "Create File Shader Code";
-        public const string CreateMMKStringShaderCodeSnapMenuItem = AssetsMenuRoot + "Create String Shader Code";
+        public const string CreateMMKShaderGroupMenuItem = AssetsMenuRootDev + "Create Shader Group";
+        public const string CreateMMKShaderMenuItem = AssetsMenuRootDev + "Create Shader";
+        public const string CreateMMKShaderPassMenuItem = AssetsMenuRootDev + "Create Shader Pass";
+        public const string CreateMMKShaderFeatureMenuItem = AssetsMenuRootDev + "Create Shader Feature";
+
+        public const string CreateMMKVertexProgramMenuItem = AssetsMenuRootDev + "Create Vertex Program";
+        public const string CreateMMKHullProgramMenuItem = AssetsMenuRootDev + "Create Hull Program";
+        public const string CreateMMKDomainProgramMenuItem = AssetsMenuRootDev + "Create Domain Program";
+        public const string CreateMMKGeometryProgramMenuItem = AssetsMenuRootDev + "Create Geometry Program";
+        public const string CreateMMKMaterialProgramMenuItem = AssetsMenuRootDev + "Create Material Program";
+        public const string CreateMMKLightingProgramMenuItem = AssetsMenuRootDev + "Create Lighting Program";
+
+        public const string CreateMMKFileShaderCodeSnapMenuItem = AssetsMenuRootDev + "Create File Shader Code";
+        public const string CreateMMKStringShaderCodeSnapMenuItem = AssetsMenuRootDev + "Create String Shader Code";
     }
 }
