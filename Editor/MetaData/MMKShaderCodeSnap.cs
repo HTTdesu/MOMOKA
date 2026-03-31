@@ -10,6 +10,7 @@ namespace MOMOKA.MetaData
     {
         public MMKShaderInjectPoint InjectPoint;
         public MMKShaderBinding Binding;
+        public ShaderInclude[] IncludeFiles;
 
         public abstract string GenerateCode();
     }
@@ -24,7 +25,7 @@ namespace MOMOKA.MetaData
         }
     }
 
-    [CreateAssetMenu(fileName = "New String Shader Code", menuName = MMKCommon.CreateMMKStringShaderCodeSnapMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 200)]
+    [CreateAssetMenu(fileName = "New String Shader Code", menuName = MMKCommon.CreateMMKStringShaderCodeSnapMenuItem, order = MMKCommon.AssetsMenuRootDevBaseOrder + 201)]
     public class MMKStringShaderCodeSnap : MMKShaderCodeSnap
     {
         [TextArea(5, 10)]

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using MOMOKA.Shader;
+using System.Collections.Generic;
 
 namespace MOMOKA.MetaData
 {
@@ -11,19 +12,30 @@ namespace MOMOKA.MetaData
     {
         public ShaderPropertyDeclarationType ShaderDeclaration = ShaderPropertyDeclarationType.PerMaterial;
 
+        public bool EditorOnly;
+
         public string[] Header;
         public string PropertyName;
         public string PropertyDescription;
         public string ConstantBufferName;
 
-        public abstract string GenerateShaderProperty();
+        public abstract string GenerateMaterialProperty();
 
         public abstract string GenerateShaderUniform();
 
-        protected string ComposeHeader()
+        protected string ComposeHeader(string[] extreHeaders = null)
         {
+            HashSet<string> allHeaders = new HashSet<string>(Header ?? Array.Empty<string>());
+            if (extreHeaders != null)
+            {
+                foreach (string header in extreHeaders)
+                {
+                    allHeaders.Add(header);
+                }
+            }
+
             StringBuilder sb = new StringBuilder();
-            foreach (string header in Header)
+            foreach (string header in allHeaders)
             {
                 if (!header.StartsWith("["))
                 {
@@ -44,14 +56,21 @@ namespace MOMOKA.MetaData
     {
         public float DefaultValue;
 
-        public override string GenerateShaderProperty()
+        public override string GenerateMaterialProperty()
         {
             return $"{ComposeHeader()}{PropertyName} (\"{PropertyDescription}\", Float) = {DefaultValue}";
         }
 
         public override string GenerateShaderUniform()
         {
-            return $"{MMKShaderCommon.GetPrecisionForFloat()} {PropertyName};";
+            if (EditorOnly)
+            {
+                return null;
+            }
+            else
+            {
+                return $"{MMKShaderCommon.GetPrecisionForFloat()} {PropertyName};";
+            }
         }
     }
 
@@ -60,14 +79,21 @@ namespace MOMOKA.MetaData
         public float RangeMin;
         public float RangeMax;
 
-        public override string GenerateShaderProperty()
+        public override string GenerateMaterialProperty()
         {
             return $"{ComposeHeader()}{PropertyName} (\"{PropertyDescription}\", Range({RangeMin}, {RangeMax})) = {DefaultValue}";
         }
 
         public override string GenerateShaderUniform()
         {
-            return $"{MMKShaderCommon.GetPrecisionForFloat()} {PropertyName};";
+            if (EditorOnly)
+            {
+                return null;
+            }
+            else
+            {
+                return $"{MMKShaderCommon.GetPrecisionForFloat()} {PropertyName};";
+            }
         }
     }
 
@@ -75,14 +101,21 @@ namespace MOMOKA.MetaData
     {
         public int DefaultValue;
 
-        public override string GenerateShaderProperty()
+        public override string GenerateMaterialProperty()
         {
             return $"{ComposeHeader()}{PropertyName} (\"{PropertyDescription}\", Integer) = {DefaultValue}";
         }
 
         public override string GenerateShaderUniform()
         {
-            return $"{MMKShaderCommon.GetPrecisionForFloat()} {PropertyName};";
+            if (EditorOnly)
+            {
+                return null;
+            }
+            else
+            {
+                return $"{MMKShaderCommon.GetPrecisionForFloat()} {PropertyName};";
+            }
         }
     }
 
@@ -90,14 +123,21 @@ namespace MOMOKA.MetaData
     {
         public Vector4 DefaultValue;
 
-        public override string GenerateShaderProperty()
+        public override string GenerateMaterialProperty()
         {
             return $"{ComposeHeader()}{PropertyName} (\"{PropertyDescription}\", Vector) = ({DefaultValue.x}, {DefaultValue.y}, {DefaultValue.z}, {DefaultValue.w})";
         }
 
         public override string GenerateShaderUniform()
         {
-            return $"{MMKShaderCommon.GetPrecisionForFloat()}4 {PropertyName};";
+            if (EditorOnly)
+            {
+                return null;
+            }
+            else
+            {
+                return $"{MMKShaderCommon.GetPrecisionForFloat()}4 {PropertyName};";
+            }
         }
     }
 
@@ -106,14 +146,21 @@ namespace MOMOKA.MetaData
         public Color DefaultColor;
         public bool HDR;
 
-        public override string GenerateShaderProperty()
+        public override string GenerateMaterialProperty()
         {
-            return $"{(HDR ? "[HDR] " : "")}{ComposeHeader()}{PropertyName} (\"{PropertyDescription}\", Color) = ({DefaultColor.r}, {DefaultColor.g}, {DefaultColor.b}, {DefaultColor.a})";
+            return $"{ComposeHeader(new string[] { HDR ? "HDR" : "" })}{PropertyName} (\"{PropertyDescription}\", Color) = ({DefaultColor.r}, {DefaultColor.g}, {DefaultColor.b}, {DefaultColor.a})";
         }
 
         public override string GenerateShaderUniform()
         {
-            return $"{MMKShaderCommon.GetPrecisionForFloat()}4 {PropertyName};";
+            if (EditorOnly)
+            {
+                return null;
+            }
+            else
+            {
+                return $"{MMKShaderCommon.GetPrecisionForFloat()}4 {PropertyName};";
+            }
         }
     }
 
@@ -142,7 +189,7 @@ namespace MOMOKA.MetaData
         public bool UseScaleAndOffset;
         public bool NoSampler;
 
-        public override string GenerateShaderProperty()
+        public override string GenerateMaterialProperty()
         {
             string dimensionStr = Dimension switch
             {
@@ -150,7 +197,8 @@ namespace MOMOKA.MetaData
                 TextureDimension.Texture2DArray => "2DArray",
                 TextureDimension.Texture3D => "3D",
                 TextureDimension.TextureCube => "Cube",
-                TextureDimension.TextureCubeArray => "CubeArray"
+                TextureDimension.TextureCubeArray => "CubeArray",
+                _ => "2D"
             };
 
             string valueStr = Dimension switch
@@ -159,18 +207,21 @@ namespace MOMOKA.MetaData
                 _ => "\"\""
             };
 
-            return $"{(UseScaleAndOffset ? "" : "[NoScaleOffset] ")}{ComposeHeader()}{PropertyName} (\"{PropertyDescription}\", {dimensionStr}) = {valueStr} {{}}";
+            return $"{ComposeHeader(new string[] { UseScaleAndOffset ? "" : "NoScaleOffset" })}{PropertyName} (\"{PropertyDescription}\", {dimensionStr}) = {valueStr} {{}}";
         }
 
         public override string GenerateShaderUniform()
         {
+            if (EditorOnly) return null;
+
             string dimensionStr = Dimension switch
             {
                 TextureDimension.Texture2D => "TEXTURE2D",
                 TextureDimension.Texture2DArray => "TEXTURE2D_ARRAY",
                 TextureDimension.Texture3D => "TEXTURE3D",
                 TextureDimension.TextureCube => "TEXTURECUBE",
-                TextureDimension.TextureCubeArray => "TEXTURECUBE_ARRAY"
+                TextureDimension.TextureCubeArray => "TEXTURECUBE_ARRAY",
+                _ => "TEXTURE2D"
             };
 
             string textureStatement = $"{dimensionStr}({PropertyName});";
